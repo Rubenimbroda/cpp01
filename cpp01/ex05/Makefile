@@ -1,0 +1,43 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ruben <ruben@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/03/26 04:02:52 by ruben             #+#    #+#              #
+#    Updated: 2026/03/26 04:27:16 by ruben            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = harl
+
+SRCS = 	main.cpp \
+		Harl.cpp \
+
+C++ = c++
+CFLAGS = -Werror -Wextra -Wall -std=c++98
+
+OBJS = $(SRCS:.cpp=.o)
+
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$(C++) $(CFLAGS) $(OBJS) -o $(NAME)
+	@echo "$(NAME) compiled ✅"
+
+%.o: %.cpp
+	@$(C++) $(CFLAGS) -c $< -o $@
+
+clean:
+	@rm -rf $(OBJS)
+	@echo "clean done 🧹"
+
+fclean: clean
+	@rm -rf $(NAME)
+	@echo "fclean done 🗑️"
+
+re: fclean all
+
+.PHONY: all clean fclean re
